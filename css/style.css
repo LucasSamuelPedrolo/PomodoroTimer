@@ -10,6 +10,27 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    position: relative;
+    color: white;
     padding: 2em;
-    
+}
+
+.background-header {
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: block;
+    z-index: -1;
+    background-image: url('./css/clouds.png');
+    background-position: center;
+}
+
+@keyframes cloudMove {
+    0%{
+        left: 0;
+    }
+    100%{
+        left: -100%;
+    }
 }
