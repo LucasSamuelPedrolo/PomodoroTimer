@@ -3,6 +3,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 .stars {
@@ -82,7 +83,7 @@
         400px 51px white,
         479px 90px white,
         1100px 20px white;
-    animation: starsMovement 15s linear infinite;
+    animation: starsMovement 8s linear infinite;
 }
 
 .stars2::after {
