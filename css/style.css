@@ -12,6 +12,7 @@
     justify-content: center;
     padding: 2em;
     background-color: black;
+    background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 43%, rgb(120, 12, 153) 100%);
     position: relative;
 }
 
