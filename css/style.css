@@ -45,7 +45,6 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 
 .pomodoro-timer {
@@ -55,7 +54,6 @@ main {
     justify-content: space-around;
     width: 300px;
     height: 300px;
-    z-index: 1;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(0, 0, 0, 1) 57%, rgba(32, 32, 32, 0.7595413165266106) 98%);
     position: relative;
@@ -67,16 +65,12 @@ main {
     border-radius: 50%;
     z-index: -1;
     position: absolute;
+    left: -5rem;
 }
 
-.spin-efects::before{
-    content: "";
+.spin{
     position: absolute;
-    top: 0;
-    width: 2rem;
-    height: 18rem;
-
-    background-color: rgb(0, 0, 0);
+    top: -5rem;
 }
 
 @keyframes spin {
@@ -89,9 +83,7 @@ main {
     }
 }
 
-
 .timer {
-    
     display: block;
     color: white;
     padding: 3rem 1rem;
