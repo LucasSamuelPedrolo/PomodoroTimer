@@ -1,0 +1,118 @@
+.sky {
+    max-width: 1200px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.stars {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    box-shadow: 200px 20px white,
+        10px 80px white,
+        100px 90px white,
+        250px 65px white,
+        50px 30px white,
+        300px 15px white,
+        350px 75px white,
+        400px 51px white,
+        460px 62px white,
+        500px 20px white,
+        510px 80px white,
+        640px 90px white,
+        675px 65px white,
+        700px 30px white,
+        785px 15px white,
+        800px 75px white,
+        885px 51px white,
+        960px 62px white,
+        1005px 15px white,
+        1020px 55px white,
+        1145px 51px white,
+        1195px 62px white;
+
+    animation: starsMovement 13s linear infinite;
+}
+
+.stars::after {
+    content: "";
+    top: 101px;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    box-shadow: 200px 20px white,
+        10px 80px white,
+        100px 90px white,
+        250px 65px white,
+        50px 30px white,
+        300px 15px white,
+        350px 75px white,
+        400px 51px white,
+        460px 62px white,
+        500px 20px white,
+        510px 80px white,
+        640px 90px white,
+        675px 65px white,
+        700px 30px white,
+        785px 15px white,
+        800px 75px white,
+        885px 51px white,
+        960px 62px white,
+        1005px 15px white,
+        1020px 55px white,
+        1145px 51px white,
+        1195px 62px white;
+}
+
+.stars2 {
+    position: absolute;
+    width: 2.5px;
+    height: 2.5px;
+    border-radius: 50%;
+    box-shadow: 230px 45px white,
+        25px 90px white,
+        115px 10px white,
+        550px 65px white,
+        50px 30px white,
+        720px 15px white,
+        850px 75px white,
+        400px 51px white,
+        479px 90px white,
+        1100px 20px white;
+    animation: starsMovement 8s linear infinite;
+}
+
+.stars2::after {
+    content: "";
+    position: absolute;
+    top: 101px;
+    width: 2.5px;
+    height: 2.5px;
+    border-radius: 50%;
+    box-shadow: 230px 45px white,
+        25px 90px white,
+        115px 10px white,
+        550px 65px white,
+        50px 30px white,
+        720px 15px white,
+        850px 75px white,
+        400px 51px white,
+        479px 90px white,
+        1100px 20px white;
+}
+
+@keyframes starsMovement {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-101px);
+    }
+}
+
+/*end of header stars animation */
