@@ -20,7 +20,6 @@
 .header h1 {
     text-transform: uppercase;
     color: white;
-    z-index: 1;
     background: linear-gradient(180deg, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 43%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -51,12 +50,44 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
     justify-content: space-around;
     width: 300px;
     height: 300px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(0, 0, 0, 1) 57%, rgba(32, 32, 32, 0.7595413165266106) 98%);
-    position: relative;
+}
+
+.pomodoro-timer-animation {
+    width: 320px;
+    height: 335px;
+    border-radius: 50%;
+    background-color: rgb(44, 44, 44);
+    position: absolute;
+    z-index: 1;
+    filter: blur(0.2rem);
+    animation: spinAnimation 5s linear infinite;
+}
+
+.pomodoro-timer-animation::before {
+    content: "";
+    width: 325px;
+    height: 340px;
+    border-radius: 50%;
+    background-color: rgb(44, 44, 44);
+    position: absolute;
+
+    animation: spinAnimation 8s linear infinite;
+}
+
+@keyframes spinAnimation {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(360deg);
+    }
 }
 
 .timer {
@@ -70,12 +101,12 @@ main {
     display: block;
 }
 
-.options-timer button:hover{
+.options-timer button:hover {
     background-color: rgb(161, 98, 16);
 }
 
 
-.more{
+.more {
     position: absolute;
     bottom: 5%;
 }
