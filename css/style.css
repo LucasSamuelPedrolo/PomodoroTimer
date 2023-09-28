@@ -67,14 +67,11 @@ main {
 }
 
 .pomodoro-timer-animation {
-    width: 320px;
+    width: 325px;
     height: 335px;
-    border-radius: 50%;
-    background-color: rgb(156, 155, 155);
     position: absolute;
     z-index: 1;
-    filter: blur(0.2rem);
-    animation: spinAnimation 5s linear infinite;
+
 }
 
 .pomodoro-timer-animation::before {
@@ -84,8 +81,19 @@ main {
     border-radius: 50%;
     background-color: rgb(44, 44, 44);
     position: absolute;
-    animation: spinAnimation 8s linear infinite;
+    animation: spinAnimation 6s linear infinite;
 }
+
+.pomodoro-timer-animation::after {
+    content: "";
+    width: 325px;
+    height: 340px;
+    border-radius: 50%;
+    background-color: rgb(44, 44, 44);
+    position: absolute;
+    animation: spinAnimation 6s linear infinite;
+}
+
 
 @keyframes spinAnimation {
     0% {
