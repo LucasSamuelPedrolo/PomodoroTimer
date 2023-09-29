@@ -3,7 +3,8 @@ const startTimer = document.querySelector('#start');
 const resetTimer = document.querySelector('#reset');
 const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
-const animationTimerStart = document.querySelector('.pomodoro-timer-animation');
+
+let timerControl;
 
 function disableButton(btn) {
     btn.disabled = true;
@@ -24,7 +25,7 @@ document.addEventListener('click', (e) => {
         disableButton(startTimer);
         enableButton(pauseTimer);
         enableButton(resetTimer);
-        animationTimerStart.classList.remove('hidden');
+
     }
     if (elem.id === 'reset') {
         console.log(elem.id)
@@ -33,9 +34,16 @@ document.addEventListener('click', (e) => {
         console.log(elem.id)
     }
     if (elem.id === 'more') {
-        console.log(elem.id)
-    }
 
+    }
 })
 
 
+function timerStarted(minutes, seconds) {
+    timerControl = setInterval(() => {
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+
+    }, 1000);
+}
