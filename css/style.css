@@ -46,7 +46,7 @@ main {
 }
 
 .section-content-main {
-    height: calc(100vh - 103px - 90.781px);
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,51 +58,17 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 2;
     justify-content: space-around;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+    min-width: 300px;
+    min-height: 400px;
+    max-width: 800px;
+    max-height: 800px;
     background: radial-gradient(circle, rgba(0, 0, 0, 1) 57%, rgba(32, 32, 32, 0.7595413165266106) 98%);
-}
-
-.pomodoro-timer-animation {
-    width: 325px;
-    height: 335px;
-    position: absolute;
-    z-index: 1;
-
-}
-
-.pomodoro-timer-animation::before {
-    content: "";
-    width: 325px;
-    height: 340px;
-    border-radius: 50%;
-    background-color: rgb(44, 44, 44);
-    position: absolute;
-    animation: spinAnimation 6s linear infinite;
-}
-
-.pomodoro-timer-animation::after {
-    content: "";
-    width: 325px;
-    height: 340px;
-    border-radius: 50%;
-    background-color: rgb(44, 44, 44);
-    position: absolute;
-    animation: spinAnimation 6s linear infinite;
-}
-
-
-@keyframes spinAnimation {
-    0% {
-        transform: rotateZ(0deg);
-    }
-
-    100% {
-        transform: rotateZ(360deg);
-    }
+    border-radius: 0.3rem;
+    backdrop-filter: blur(3rem);
+    border: solid whitesmoke 0.1rem;
 }
 
 .timer {
@@ -180,7 +146,6 @@ main {
     line-height: 1.8rem;
     text-align: left;
 }
-
 
 .how-started ul {
     padding: 0 1rem;
