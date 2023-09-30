@@ -11,6 +11,7 @@ function disableButton(btn) {
     btn.disabled = true;
     btn.style.opacity = '0.2';
 };
+
 function enableButton(btn) {
     btn.disabled = false
     btn.style.opacity = '1';
@@ -25,14 +26,15 @@ document.addEventListener('click', (e) => {
         disableButton(startTimer);
         enableButton(pauseTimer);
 
-        if (!lastMin) {
+        if (lastMin) {
             clearInterval(timerControl);
             timerStarted(lastMin, timer);
             console.log('dentro do last min if')
+        } else {
+            clearInterval(timerControl);
+            timerStarted(minutesToSecondsTimer, timer);
+            console.log('ação aqui');
         }
-        clearInterval(timerControl);
-        timerStarted(minutesToSecondsTimer, timer);
-        console.log('ação aqui');
     }
 
     if (elem.id === 'pause') {
@@ -49,7 +51,6 @@ function timerStarted(duration, display) {
     let timer = duration, minutes, seconds;
 
     timerControl = setInterval(() => {
-        console.log('last ', timer + 'e' + lastMin)
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
         minutes = minutes < 10 ? '0' + minutes : minutes;
