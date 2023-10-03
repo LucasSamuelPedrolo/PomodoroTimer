@@ -1,9 +1,10 @@
-const timer = document.querySelector('.timer');
+const timerDisplay = document.querySelector('.timer');
 const startTimer = document.querySelector('#start');
 const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
 
 const minutesToSecondsTimer = 2;
+const minutesToSecondsTimerRest = 60 * 5;
 let lastMin;
 let timerStop;
 let pauseControl;
@@ -24,21 +25,30 @@ startTimer.addEventListener('click', () => {
     controlTimer();
     enableButton(pauseTimer);
     disableButton(startTimer);
-    console.log('no click')
 });
 
 function controlTimer() {
     if (!pauseControl) {
-        console.log('entrou na func')
         if (lastMin) {
             clearInterval(timerStop);
-            timerStarted(lastMin, timer);
+            timerStarted(lastMin, timerDisplay);
         } else {
             clearInterval(timerStop);
-            timerStarted(minutesToSecondsTimer, timer);
+            timerStarted(minutesToSecondsTimer, timerDisplay);
         }
     } else {
         pauseControl = 0;
+        restTimer()
+    }
+}
+
+function restTimer() {
+    if (lastMin) {
+        clearInterval(timerStop);
+        timerStarted(lastMin, timerDisplay);
+    } else {
+        clearInterval(timerStop);
+        timerStarted(minutesToSecondsTimerRest, timerDisplay);
     }
 }
 
@@ -47,7 +57,6 @@ pauseTimer.addEventListener('click', () => {
     disableButton(pauseTimer);
     clearInterval(timerStop);
 })
-
 
 function timerStarted(duration, display) {
     let timer = duration, minutes, seconds;
@@ -68,6 +77,7 @@ function timerStarted(duration, display) {
             disableButton(pauseTimer);
             pauseControl = 1;
             lastMin = 0;
+            timerDisplay.innerHTML = '05:00';
         }
     }, 1000);
 }
