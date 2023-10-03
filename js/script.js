@@ -3,8 +3,8 @@ const startTimer = document.querySelector('#start');
 const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
 
-const minutesToSecondsTimer = 2;
-const minutesToSecondsTimerRest = 2;
+const minutesToSecondsTimer = 60 * 25;
+const minutesToSecondsTimerRest = 60 * 5;
 let lastMin;
 let timerStop;
 let pauseControl;
@@ -72,9 +72,11 @@ function timerStarted(duration, display, restTimer) {
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
+
         lastMin = timer;
         display.textContent = minutes + ':' + seconds;
 
+        document.title = minutes + ':' + seconds;
         if (--timer < 0) {
             if (restTimer === 1) {
                 clearInterval(timerStop);
