@@ -31,6 +31,7 @@ body {
 
 .hidden {
     display: none !important;
+    visibility: hidden;
 }
 
 main {
@@ -60,15 +61,19 @@ main {
     align-items: center;
     justify-content: space-around;
     width: 50%;
-    height: 50%;
-    min-width: 300px;
-    min-height: 400px;
+    height: min-content;
     max-width: 800px;
-    max-height: 800px;
+    max-height: 10rem;
     background: radial-gradient(circle, rgba(0, 0, 0, 1) 57%, rgba(32, 32, 32, 0.7595413165266106) 98%);
     border-radius: 0.3rem;
     backdrop-filter: blur(3rem);
     border: solid whitesmoke 0.1rem;
+    transition:all 300ms cubic-bezier(.33, -0.94, .68, 1.86);
+}
+
+.pomodoro-timer-animation {
+    height: 40%;
+    max-height: 20rem;
 }
 
 .timer {
@@ -80,6 +85,7 @@ main {
 
 .options-timer {
     display: flex;
+    padding: 1rem;
     gap: 1rem;
 }
 

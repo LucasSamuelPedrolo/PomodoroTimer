@@ -1,16 +1,19 @@
-const timer = document.querySelector('.timer');
+const timerDisplay = document.querySelector('.timer');
 const startTimer = document.querySelector('#start');
 const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
 
-const minutesToSecondsTimer = 60 * 2;
+const minutesToSecondsTimer = 60 * 25;
+const minutesToSecondsTimerRest = 60 * 5;
 let lastMin;
-let timerControl;
+let timerStop;
+let pauseControl;
 
 function disableButton(btn) {
     btn.disabled = true;
     btn.style.opacity = '0.2';
 };
+
 function enableButton(btn) {
     btn.disabled = false
     btn.style.opacity = '1';
@@ -18,48 +21,80 @@ function enableButton(btn) {
 
 disableButton(pauseTimer);
 
-document.addEventListener('click', (e) => {
-    const elem = e.target;
+startTimer.addEventListener('click', () => {
 
-    if (elem.id === 'start') {
-        disableButton(startTimer);
-        enableButton(pauseTimer);
+    const mainDiv = document.querySelector('.pomodoro-timer');
+    timerDisplay.classList.remove('hidden');
+    mainDiv.classList.add('pomodoro-timer-animation');
+    controlTimer();
+    enableButton(pauseTimer);
+    disableButton(startTimer);
+});
 
-        if (!lastMin) {
-            clearInterval(timerControl);
-            timerStarted(lastMin, timer);
-            console.log('dentro do last min if')
+function controlTimer() {
+    if (!pauseControl) {
+        if (lastMin) {
+            clearInterval(timerStop);
+            timerStarted(lastMin, timerDisplay, pauseControl);
+        } else {
+            clearInterval(timerStop);
+            timerStarted(minutesToSecondsTimer, timerDisplay, pauseControl);
         }
-        clearInterval(timerControl);
-        timerStarted(minutesToSecondsTimer, timer);
-        console.log('ação aqui');
+    } else {
+        console.log('vindo aqui')
+        pauseControl = 1;
+        restTimer()
     }
+}
 
-    if (elem.id === 'pause') {
-        clearInterval(timerControl);
-        enableButton(startTimer);
-        disableButton(pauseTimer);
+function restTimer() {
+    if (lastMin) {
+        clearInterval(timerStop);
+        timerStarted(lastMin, timerDisplay, pauseControl);
+    } else {
+        clearInterval(timerStop);
+        timerStarted(minutesToSecondsTimerRest, timerDisplay, pauseControl);
     }
-    if (elem.id === 'more') {
+}
 
-    }
+pauseTimer.addEventListener('click', () => {
+    enableButton(startTimer);
+    disableButton(pauseTimer);
+    clearInterval(timerStop);
 })
 
-function timerStarted(duration, display) {
+function timerStarted(duration, display, restTimer) {
     let timer = duration, minutes, seconds;
 
-    timerControl = setInterval(() => {
-        console.log('last ', timer + 'e' + lastMin)
+    timerStop = setInterval(() => {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
+
         lastMin = timer;
         display.textContent = minutes + ':' + seconds;
 
+        document.title = minutes + ':' + seconds;
         if (--timer < 0) {
-            clearInterval(timerControl);
+            if (restTimer === 1) {
+                clearInterval(timerStop);
+                enableButton(startTimer);
+                disableButton(pauseTimer);
+                alert('opa hora de descançar um pouco guerreiro');
+                pauseControl = 0;
+                lastMin = 0;
+                timerDisplay.innerHTML = '05:00';
+            } else {
+                clearInterval(timerStop);
+                enableButton(startTimer);
+                disableButton(pauseTimer);
+                alert('bora la que o sucesso não surge sozinho');
+                pauseControl = 1;
+                lastMin = 0;
+                timerDisplay.innerHTML = '25:00';
+            }
         }
     }, 1000);
 }
