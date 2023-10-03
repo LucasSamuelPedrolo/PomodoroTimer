@@ -4,7 +4,7 @@ const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
 
 const minutesToSecondsTimer = 2;
-const minutesToSecondsTimerRest = 60 * 5;
+const minutesToSecondsTimerRest = 2;
 let lastMin;
 let timerStop;
 let pauseControl;
@@ -31,13 +31,14 @@ function controlTimer() {
     if (!pauseControl) {
         if (lastMin) {
             clearInterval(timerStop);
-            timerStarted(lastMin, timerDisplay);
+            timerStarted(lastMin, timerDisplay, pauseControl);
         } else {
             clearInterval(timerStop);
-            timerStarted(minutesToSecondsTimer, timerDisplay);
+            timerStarted(minutesToSecondsTimer, timerDisplay, pauseControl);
         }
     } else {
-        pauseControl = 0;
+        console.log('vindo aqui')
+        pauseControl = 1;
         restTimer()
     }
 }
@@ -45,10 +46,10 @@ function controlTimer() {
 function restTimer() {
     if (lastMin) {
         clearInterval(timerStop);
-        timerStarted(lastMin, timerDisplay);
+        timerStarted(lastMin, timerDisplay, pauseControl);
     } else {
         clearInterval(timerStop);
-        timerStarted(minutesToSecondsTimerRest, timerDisplay);
+        timerStarted(minutesToSecondsTimerRest, timerDisplay, pauseControl);
     }
 }
 
@@ -58,7 +59,7 @@ pauseTimer.addEventListener('click', () => {
     clearInterval(timerStop);
 })
 
-function timerStarted(duration, display) {
+function timerStarted(duration, display, restTimer) {
     let timer = duration, minutes, seconds;
 
     timerStop = setInterval(() => {
@@ -71,13 +72,23 @@ function timerStarted(duration, display) {
         display.textContent = minutes + ':' + seconds;
 
         if (--timer < 0) {
-            clearInterval(timerStop);
-            alert('opa hora de descançar um pouco guerreiro');
-            enableButton(startTimer);
-            disableButton(pauseTimer);
-            pauseControl = 1;
-            lastMin = 0;
-            timerDisplay.innerHTML = '05:00';
+            if (restTimer === 1) {
+                clearInterval(timerStop);
+                enableButton(startTimer);
+                disableButton(pauseTimer);
+                alert('opa hora de descançar um pouco guerreiro');
+                pauseControl = 0;
+                lastMin = 0;
+                timerDisplay.innerHTML = '05:00';
+            } else {
+                clearInterval(timerStop);
+                enableButton(startTimer);
+                disableButton(pauseTimer);
+                alert('bora la que o sucesso não surge sozinho');
+                pauseControl = 1;
+                lastMin = 0;
+                timerDisplay.innerHTML = '25:00';
+            }
         }
     }, 1000);
 }
