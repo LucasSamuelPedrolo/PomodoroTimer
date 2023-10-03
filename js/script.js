@@ -3,9 +3,10 @@ const startTimer = document.querySelector('#start');
 const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
 
-const minutesToSecondsTimer = 60 * 2;
+const minutesToSecondsTimer = 2;
 let lastMin;
-let timerControl;
+let timerStop;
+let pauseControl;
 
 function disableButton(btn) {
     btn.disabled = true;
@@ -19,38 +20,39 @@ function enableButton(btn) {
 
 disableButton(pauseTimer);
 
-document.addEventListener('click', (e) => {
-    const elem = e.target;
+startTimer.addEventListener('click', () => {
+    controlTimer();
+    enableButton(pauseTimer);
+    disableButton(startTimer);
+    console.log('no click')
+});
 
-    if (elem.id === 'start') {
-        disableButton(startTimer);
-        enableButton(pauseTimer);
-
+function controlTimer() {
+    if (!pauseControl) {
+        console.log('entrou na func')
         if (lastMin) {
-            clearInterval(timerControl);
+            clearInterval(timerStop);
             timerStarted(lastMin, timer);
-            console.log('dentro do last min if')
         } else {
-            clearInterval(timerControl);
+            clearInterval(timerStop);
             timerStarted(minutesToSecondsTimer, timer);
-            console.log('ação aqui');
         }
+    } else {
+        pauseControl = 0;
     }
+}
 
-    if (elem.id === 'pause') {
-        clearInterval(timerControl);
-        enableButton(startTimer);
-        disableButton(pauseTimer);
-    }
-    if (elem.id === 'more') {
-
-    }
+pauseTimer.addEventListener('click', () => {
+    enableButton(startTimer);
+    disableButton(pauseTimer);
+    clearInterval(timerStop);
 })
+
 
 function timerStarted(duration, display) {
     let timer = duration, minutes, seconds;
 
-    timerControl = setInterval(() => {
+    timerStop = setInterval(() => {
         minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
         minutes = minutes < 10 ? '0' + minutes : minutes;
@@ -60,7 +62,12 @@ function timerStarted(duration, display) {
         display.textContent = minutes + ':' + seconds;
 
         if (--timer < 0) {
-            clearInterval(timerControl);
+            clearInterval(timerStop);
+            alert('opa hora de descançar um pouco guerreiro');
+            enableButton(startTimer);
+            disableButton(pauseTimer);
+            pauseControl = 1;
+            lastMin = 0;
         }
     }, 1000);
 }
