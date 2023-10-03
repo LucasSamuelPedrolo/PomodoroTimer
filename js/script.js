@@ -22,6 +22,10 @@ function enableButton(btn) {
 disableButton(pauseTimer);
 
 startTimer.addEventListener('click', () => {
+
+    const mainDiv = document.querySelector('.pomodoro-timer');
+    timerDisplay.classList.remove('hidden');
+    mainDiv.classList.add('pomodoro-timer-animation');
     controlTimer();
     enableButton(pauseTimer);
     disableButton(startTimer);

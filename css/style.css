@@ -60,13 +60,17 @@ main {
     align-items: center;
     justify-content: space-around;
     width: 50%;
-    height: min-content;
     max-width: 800px;
     max-height: 800px;
     background: radial-gradient(circle, rgba(0, 0, 0, 1) 57%, rgba(32, 32, 32, 0.7595413165266106) 98%);
     border-radius: 0.3rem;
     backdrop-filter: blur(3rem);
     border: solid whitesmoke 0.1rem;
+}
+
+.pomodoro-timer-animation{
+    transition: height 400ms cubic-bezier(.33,-0.94,.68,1.86);
+    height: 40%;
 }
 
 .timer {
