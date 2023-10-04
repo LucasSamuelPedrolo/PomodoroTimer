@@ -4,10 +4,11 @@ const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
 
 const minutesToSecondsTimer = 60 * 25;
-const minutesToSecondsTimerRest = 60 * 5;
+let minutesToSecondsTimerRest = 60 * 5;
 let lastMin;
 let timerStop;
-let pauseControl;
+let pauseControl = 0;
+let morePauseTimer = 3;
 
 function disableButton(btn) {
     btn.disabled = true;
@@ -22,8 +23,9 @@ function enableButton(btn) {
 disableButton(pauseTimer);
 
 startTimer.addEventListener('click', () => {
-
+    const mainTitle = document.querySelector('.main-title');
     const mainDiv = document.querySelector('.pomodoro-timer');
+    mainTitle.classList.add('hidden');
     timerDisplay.classList.remove('hidden');
     mainDiv.classList.add('pomodoro-timer-animation');
     controlTimer();
@@ -41,19 +43,29 @@ function controlTimer() {
             timerStarted(minutesToSecondsTimer, timerDisplay, pauseControl);
         }
     } else {
-        console.log('vindo aqui')
         pauseControl = 1;
         restTimer()
     }
 }
 
 function restTimer() {
-    if (lastMin) {
-        clearInterval(timerStop);
-        timerStarted(lastMin, timerDisplay, pauseControl);
+    if (morePauseTimer >= 5) {
+        minutesToSecondsTimerRest = 60 * 30;
+        if (lastMin) {
+            clearInterval(timerStop);
+            timerStarted(lastMin, timerDisplay, pauseControl);
+        } else {
+            clearInterval(timerStop);
+            timerStarted(minutesToSecondsTimerRest, timerDisplay, pauseControl);
+        }
     } else {
-        clearInterval(timerStop);
-        timerStarted(minutesToSecondsTimerRest, timerDisplay, pauseControl);
+        if (lastMin) {
+            clearInterval(timerStop);
+            timerStarted(lastMin, timerDisplay, pauseControl);
+        } else {
+            clearInterval(timerStop);
+            timerStarted(minutesToSecondsTimerRest, timerDisplay, pauseControl);
+        }
     }
 }
 
@@ -78,20 +90,27 @@ function timerStarted(duration, display, restTimer) {
 
         document.title = minutes + ':' + seconds;
         if (--timer < 0) {
-            if (restTimer === 1) {
+            morePauseTimer++;
+            console.log(restTimer, pauseControl)
+            if (restTimer === 0) {
                 clearInterval(timerStop);
                 enableButton(startTimer);
                 disableButton(pauseTimer);
                 alert('opa hora de descançar um pouco guerreiro');
-                pauseControl = 0;
+                ++pauseControl;
                 lastMin = 0;
-                timerDisplay.innerHTML = '05:00';
-            } else {
+                if (morePauseTimer >= 5) {
+                    timerDisplay.innerHTML = '30:00';
+                } else {
+                    timerDisplay.innerHTML = '05:00';
+                }
+            }
+            if (restTimer === 1) {
                 clearInterval(timerStop);
                 enableButton(startTimer);
                 disableButton(pauseTimer);
                 alert('bora la que o sucesso não surge sozinho');
-                pauseControl = 1;
+                --pauseControl;
                 lastMin = 0;
                 timerDisplay.innerHTML = '25:00';
             }
