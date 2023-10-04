@@ -9,4 +9,4 @@
 
 ## Como testar/utilizar?
 
-  Você pode simplesmente baixar o projeto utilizando git --clone https://github.com/LucasSamuelPedrolo/PomodoroTimer , ou então acessar por <a href='https://github.com/LucasSamuelPedrolo/PomodoroTimer' target='_blank'>aqui</a>
+  Você pode simplesmente baixar o projeto utilizando git --clone https://github.com/LucasSamuelPedrolo/PomodoroTimer , ou então acessar por <a href='https://lucassamuelpedrolo.github.io/PomodoroTimer/' target='_blank'>aqui</a>
