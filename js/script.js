@@ -2,13 +2,16 @@ const timerDisplay = document.querySelector('.timer');
 const startTimer = document.querySelector('#start');
 const pauseTimer = document.querySelector('#pause');
 const btnAboutPomodoro = document.querySelector('#more');
+const mainTitle = document.querySelector('.main-title');
+const mainDiv = document.querySelector('.pomodoro-timer');
+const sectionAboutContent = document.querySelector('.section-content-more');
 
 const minutesToSecondsTimer = 60 * 25;
 let minutesToSecondsTimerRest = 60 * 5;
 let lastMin;
 let timerStop;
 let pauseControl = 0;
-let morePauseTimer = 3;
+let morePauseTimer = 0;
 
 function disableButton(btn) {
     btn.disabled = true;
@@ -23,8 +26,7 @@ function enableButton(btn) {
 disableButton(pauseTimer);
 
 startTimer.addEventListener('click', () => {
-    const mainTitle = document.querySelector('.main-title');
-    const mainDiv = document.querySelector('.pomodoro-timer');
+
     mainTitle.classList.add('hidden');
     timerDisplay.classList.remove('hidden');
     mainDiv.classList.add('pomodoro-timer-animation');
@@ -32,6 +34,10 @@ startTimer.addEventListener('click', () => {
     enableButton(pauseTimer);
     disableButton(startTimer);
 });
+
+btnAboutPomodoro.addEventListener('click', () => {
+    sectionAboutContent.classList.toggle('hidden');
+})
 
 function controlTimer() {
     if (!pauseControl) {
@@ -83,8 +89,6 @@ function timerStarted(duration, display, restTimer) {
         seconds = parseInt(timer % 60, 10);
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
-
-
         lastMin = timer;
         display.textContent = minutes + ':' + seconds;
 

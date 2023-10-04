@@ -47,7 +47,7 @@ body {
     width: 100%;
     padding: 1rem;
     text-align: center;
-    color: rgb(255, 20, 3);
+    color: rgb(255, 255, 255);
 }
 
 main {
@@ -190,4 +190,20 @@ main {
 .footer-content {
     width: max-content;
     padding: 0.3rem;
+}
+
+.footer-content a{
+    text-decoration: none;
+}
+
+.dev{
+    color: rgb(85, 250, 85);
+}
+
+.GitHub{
+    color: rgb(182, 107, 252);
+}
+
+.portfolio{
+    color: rgb(99, 99, 250);
 }
