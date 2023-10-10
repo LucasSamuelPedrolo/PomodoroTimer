@@ -1,3 +1,4 @@
+
 # Oque é o projeto 'pomodoro timer'?
    Basicamente a técnica de pomodoro se consiste em ajustar seu tempo em espaços de 25 minutos com 5 minutos para descansar (30minutos após repetir esse processo 5 vezes),
   o objetivo de ocorrer dessa maneira é melhorar o foco e <b>agilidade</b> com <b>menos tempo</b>.
@@ -10,3 +11,4 @@
 ## Como testar/utilizar?
 
   Você pode simplesmente baixar o projeto utilizando git --clone https://github.com/LucasSamuelPedrolo/PomodoroTimer , ou então acessar por <a href='https://lucassamuelpedrolo.github.io/PomodoroTimer/' target='_blank'>aqui</a>
+

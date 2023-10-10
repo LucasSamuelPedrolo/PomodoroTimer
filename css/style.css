@@ -55,7 +55,7 @@ main {
 }
 
 .main-section {
-    background-image: url('./blackHole.png');
+    background-image: url('./blackHole-min.png');
     width: 100%;
     background-position: center;
     background-size: cover;
@@ -139,7 +139,7 @@ main {
 .section-content-more {
     border-top: rgba(2, 2, 2, 0.404) solid 0.1rem;
     width: 100%;
-    height: min-content;
+    height: auto;
     background-color: rgb(38, 69, 90);
     display: flex;
     align-items: center;
@@ -148,13 +148,15 @@ main {
 
 .how-started {
     max-width: 1200px;
+
     height: auto;
-    color: rgb(0, 0, 0);
+    color: rgba(0, 0, 0, 0.993);
     background-color: aliceblue;
     border: rgb(163, 163, 163) 0.1rem solid;
     border-radius: 0.3rem;
     padding: 1.8rem;
 }
+
 
 .how-started h2 {
     padding: 1.3rem 0;
@@ -192,18 +194,22 @@ main {
     padding: 0.3rem;
 }
 
-.footer-content a{
+.footer-content a {
     text-decoration: none;
 }
 
-.dev{
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.dev {
     color: rgb(85, 250, 85);
 }
 
-.GitHub{
+.GitHub {
     color: rgb(182, 107, 252);
 }
 
-.portfolio{
+.portfolio {
     color: rgb(99, 99, 250);
 }
